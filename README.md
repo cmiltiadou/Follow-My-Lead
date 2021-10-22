@@ -52,3 +52,8 @@ follows
 *  Make the game playable online
 
 *  Add support for other input methods (i.e. gamepads, touch controls)
+
+* Add mode to have player play against a cpu player that's using random key sequences
+
+* Add marathon mode that cycles between player 1 and 2 taking lead, adds randomized conditionals and only ends when a sequence is not matched.
+
