@@ -32,9 +32,9 @@ The objective of 'Follow My Lead' is simple:
 
 * Render the round condition statement (i.e. REVERSE, OPPOSITE) and display a 7 second countdown timer.
 
-* Initialize player 2's inputs once that 7 second timer starts. capture the first 4 key presses and stop sequence
+* Initialize player 2's inputs once that 7 second timer starts. capture the first 4 key presses and stop sequence using setInterval
 
-* Run function comparing Player 1 inputs to Player 2 and pass to next round or end game
+* Run and function comparing Player 1 inputs to Player 2 and pass to next round or end game by using an if else statement.
 
 * Allow game to restart using a restart button
 
