@@ -1,15 +1,58 @@
 body {
-    margin: 0;
-    padding: 0;
     text-align: center;
-} 
+    font-family: 'Turret Road', cursive;
+}
 
-canvas {
-    background-color: burlywood;
-    width: 100%;
+.container{
+    position: static;
+    
+}
+
+/* canvas {
+    justify-self: center;
+    width: 90%;
+    margin: 20px 50px 0px 50px;
     height: 100%;
-    background-image: url("images/wp2094126-astral-wallpapers.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url('images/FML-background.png');
+    background-position: center;
+} */
 
+#gameArea {
+    display: grid;
+    justify-self: center;
+    align-content: center;
+    justify-content: center;
+    background-image: url('images/FML-background.png');
+    background-position: center;
+    margin: 10px auto;
+    width: 896px;
+    height: 504px;
+
+}
+
+.displayArrows {
+    display: inline-block;
+    
+
+}
+
+li {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    
+
+}
+
+#startButton {
+    background-color: rgba(0,0,0,0);
+    border: 1px solid white;
+    border-radius: 25%;
+    font-size: 30px;
+    font-family:  'Turret Road', cursive;
+    font-weight: bold;
+    color: floralwhite;
+    justify-self: center;
+    text-align: center;
+    margin-top: 150px;
 }
