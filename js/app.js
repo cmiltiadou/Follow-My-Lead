@@ -60,6 +60,7 @@ const resetP1 = () =>{
 
 
 const startGame = () => {
+    startButton.style.display = "none"
     setTimeout(resetP1, 3000)
 }
 

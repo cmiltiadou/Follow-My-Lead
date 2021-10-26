@@ -24,7 +24,7 @@ body {
     justify-content: center;
     background-image: url('images/FML-background.png');
     background-position: center;
-    margin: 10px auto;
+    margin: 20px auto;
     width: 896px;
     height: 504px;
 
@@ -47,7 +47,7 @@ li {
 #startButton {
     background-color: rgba(0,0,0,0);
     border: 1px solid white;
-    border-radius: 25%;
+    /* border-radius: 25%; */
     font-size: 30px;
     font-family:  'Turret Road', cursive;
     font-weight: bold;
