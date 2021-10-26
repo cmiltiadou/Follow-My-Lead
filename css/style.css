@@ -22,12 +22,14 @@ body {
     justify-self: center;
     align-content: center;
     justify-content: center;
-    background-image: url('images/FML-background.png');
+
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;;
     background-position: center;
     margin: 20px auto;
     width: 896px;
     height: 504px;
-
 }
 
 .displayArrows {
@@ -56,3 +58,24 @@ li {
     text-align: center;
     margin-top: 150px;
 }
+
+#timer {
+    font-size: 50px;
+    background-color: rgba(0,0,0,0);
+    color: whitesmoke;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
