@@ -59,10 +59,16 @@ li {
     margin-top: 150px;
 }
 
-#timer {
+#timer{
     font-size: 50px;
     background-color: rgba(0,0,0,0);
     color: whitesmoke;
+}
+
+#playerStatus {
+    background-color: rgba(0,0,0,0);
+    color: whitesmoke;
+    font-size: 30px;
 }
 
 @keyframes gradient {
