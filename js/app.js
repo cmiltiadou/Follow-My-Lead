@@ -33,11 +33,16 @@ const checkForWin = () => {
 
     // compareArrays()
         switch(true) {
-            case(currentRd =="1b"):
+            case(currentRd == "1b"):
                 if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                    timer.innerText = "Ok, lets make this a little harder" 
+                    playerStatus.innerText = "Ok, lets make this a little harder" 
+                    currentRd = "2"
+                    startButton.value = "Round 2"
+                    startButton.style.display = "inherit"
+                    resetArray()
                     } else {
-                    timer.innerText = "Sorry, do better" 
+                    timer.innerText = "GAME OVER"
+                    playerStatus.innerText = "Not your best effort" 
                 }
                 break
             case (currentRd == "2b"):
@@ -48,13 +53,10 @@ const checkForWin = () => {
                     }
                 break
             }
-           
-                
-            
         }
 
 
-let timeleft = 6;
+let timeleft = 5;
 // const countdown = setInterval(function(){
 //   if(timeleft <= 0 || currentArray.lenght == 4){
 //     clearInterval(countdown);
@@ -129,47 +131,79 @@ let timeleft = 6;
 // Player 2 now has to match Player 1's sequence exactly as entered // try to compare on the fly OR
 // store player 2's array and compare to player 1 and check for win or lose conditions using if else statement
 //
-const countdown = function(){
-    if(timeleft <= 0 || currentArray.length == 4){
-        clearInterval(countdown);
-        timer.innerText = ""
-        playerStatus.innerText = "Player 2, follow their lead!"
-        setTimeout((currentArray = arrP2), 10000)
-        currentRd = "1b"
-        // setTimeout(checkForWin, 2000)
-        // console.log("array 2 " + arrP2)
-        // console.log("array 1 " + arrP1)  
-        // add button so Player 2 can enter a matching sequence
-        // if(arrP2.length == 4 && arrP1.length == 4 ){
-        //     checkForWin()
-        // setTimeout(resetArray, 1000)
-        timer.innerText = "Player 1 get ready"
+// const countdown = function(){
+//     if(timeleft <= 0 || currentArray.length == 4){
+//         clearInterval(countdown);
+//         timer.innerText = ""
+//         setTimeout((currentArray = arrP2), 10000)
+//     } else {
+//         timer.innerText = timeleft 
+//         timeleft -= 1;} }
         
-                startButton.value = "Proceed"
-                startButton.style.display = "inherit"
-                console.log("this is array 2 " +arrP2)
-                console.log("this is array 1 " +arrP1)
-                } else {
-                    timer.innerText = timeleft 
-                        timeleft -= 1;} }
         
-
-const startGame = () => {
-    if (currentRd != 0) { document.addEventListener('keydown', recordSequence)
-    }
-    startButton.style.display = "none"
-
-    switch (true){
-        case (currentRd == "1"):
-            setInterval(() => {
-                countdown()                
+        const startGame = () => {
+            if (currentRd != 0) { document.addEventListener('keydown', recordSequence)
+        }
+        startButton.style.display = "none"
+        switch (true){
+            case (currentRd == "1"):
+                timer.innerText = "Player 1 get ready"
+                const countdown = setInterval(function(){
+                    if(timeleft <= 0 ){
+                        timer.innerText = "Player 1 ran out of time..."
+                        } else if(arrP1.length == 4){
+                            clearInterval(countdown)
+                            timer.innerText = ""
+                            currentRd = "1b"
+                            currentArray = arrP2
+                            console.log(currentRd)
+                            console.log(currentArray)
+                            playerStatus.innerText = "Player 2, follow their lead!"
+                            startButton.value = "Proceed"
+                            startButton.style.display = "inherit"
+                        } else {
+                            timer.innerText = timeleft 
+                            timeleft -= 1;
+                }}, 1040)
+                    break
+                case (currentRd == "1b"):
+                    const countdown2 = setInterval(function(){
+                        if(timeleft <= 0 ){
+                            timer.innerText = "You cant win if you dont even try..."
+                            } else if(arrP2.length == 4){
+                                timer.innerText = ""
+                                checkForWin()
+                                currentArray = arrP2
+                                console.log(currentRd)
+                                console.log(arrP2)
+                                console.log(arrP1)
+                                clearInterval(countdown2)
+                                // currentRd = "2"
+                                // // startButton.value = "Proceed"
+                                // // startButton.style.display = "inherit"
+                            } else {
+                                timer.innerText = timeleft 
+                                timeleft -= 1;
+                    }}, 1040)
                 
-            }, 1040);
-            break
-
-
-}}
-
-
-
-startButton.addEventListener('click', startGame)
+                
+            }}
+            
+            
+            
+            startButton.addEventListener('click', startGame)
+            
+            
+            // currentRd = "1b"
+            // setTimeout(checkForWin, 2000)
+            // console.log("array 2 " + arrP2)
+            // console.log("array 1 " + arrP1)  
+            // add button so Player 2 can enter a matching sequence
+            // if(arrP2.length == 4 && arrP1.length == 4 ){
+            //     checkForWin()
+            // setTimeout(resetArray, 1000)
+            // timer.innerText = "Player 1 get ready"
+            // startButton.value = "Proceed"
+            // startButton.style.display = "inherit"
+            // console.log("this is array 2 " +arrP2)
+            // console.log("this is array 1 " +arrP1)
