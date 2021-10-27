@@ -32,8 +32,7 @@ const endRound = () => {
                 playerStatus.innerText = "Player 2, follow their lead!"
                 startButton.value = "Proceed"
                 startButton.style.display = "inherit"
-                timeleft=5
-                startRecording = false
+                timeleft = 0
                 break
             case(currentRd == "1b"):
                 if(arrP1.sort().join(',') === arrP2.sort().join(',')){
@@ -46,7 +45,6 @@ const endRound = () => {
                     console.log(currentRd)
                     console.log(arrP2)
                     console.log(arrP1)
-                    timeleft=5
                     } else {
                         timer.innerText = "GAME OVER"
                         playerStatus.innerText = "Not your best effort" 
@@ -61,7 +59,6 @@ const endRound = () => {
                 playerStatus.innerText = "P1 match that sequence, but in reverse order!"
                 startButton.value = "Proceed"
                 startButton.style.display = "inherit"
-                timeleft=5
                     break
             case (currentRd == "2b"):
                 if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
@@ -83,7 +80,7 @@ const endRound = () => {
         }
 
 
-let timeleft = 5;
+let timeleft = 0;
 // const countdown = setInterval(function(){
 //   if(timeleft <= 0 || currentArray.lenght == 4){
 //     clearInterval(countdown);
@@ -112,7 +109,7 @@ let timeleft = 5;
         
     
     const recordSequence = (e) => {
-        if(currentArray.length < 4 && currentRd !== "3b"){
+        if(timeleft > 0 && currentArray.length < 4 && currentRd !== "3b"){
     switch(e.key){
         //if the w key is pressed, append to 
         case ('w'):
@@ -127,7 +124,7 @@ let timeleft = 5;
         case ('d'):
             currentArray.push('D')
             break
-    }} else if(currentArray.length < 4 && currentRd !== "3b"){
+    }} else if(timeleft > 0 && currentArray.length < 4 && currentRd !== "3b"){
         switch(e.key){
             //for the final rd, we'll have p2's keypresses correspond to the opposite key (i.e. pressing W = S) 
             case ('w'):
@@ -169,8 +166,9 @@ let timeleft = 5;
         
         
         const startGame = () => {
-            if (startRecording = true) { document.addEventListener('keydown', recordSequence)
-        }
+        document.addEventListener('keydown', recordSequence)
+        
+        timeleft=5
         
         title.innerText = ""
         startButton.style.display = "none"
@@ -180,11 +178,12 @@ let timeleft = 5;
                     if(timeleft <= 0 ){
                         timer.innerText = "GAME OVER"
                         playerStatus.innerText = "You ran out of time"
+                        startRecording = false
                         } else if(currentArray.length == 4){
                             endRound()
                             clearInterval(countdown)
-                        } else {
-                            startRecording = true
+                            startRecording = false
+                        } else if(timeleft > 0) {
                             timer.innerText = timeleft 
                             timeleft -= 1;
                 }}, 1040)
