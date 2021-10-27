@@ -3,10 +3,21 @@ body {
     font-family: 'Turret Road', cursive;
 }
 
+h1 {
+    font-family: 'Turret Road', cursive;
+}
+
+#title {
+    font-size: 75px;
+    color: whitesmoke;
+    margin-top: 50px;
+}
+
 .container{
     position: static;
     
 }
+
 
 /* canvas {
     justify-self: center;
@@ -22,7 +33,6 @@ body {
     justify-self: center;
     align-content: center;
     justify-content: center;
-
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;;
@@ -56,13 +66,15 @@ li {
     color: floralwhite;
     justify-self: center;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 100px;
+    
 }
 
 #timer{
     font-size: 50px;
     background-color: rgba(0,0,0,0);
     color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #playerStatus {

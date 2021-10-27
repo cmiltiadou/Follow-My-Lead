@@ -10,7 +10,7 @@ timer.innerText = ""
 arrP1 = []
 arrP2 = []
 
-
+let startRecording = false
 let currentArray = arrP1
 
 
@@ -21,35 +21,62 @@ const resetArray = () => {
 }
 
 
-const checkForWin = () => {
-    // let compareArrays = function () {
-    //     if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-    //         arraysEqual = true
-    //     } else {
-    //         arraysEqual = false
-    //     } 
-    // }
-    let arraysEqual = ""
-
-    // compareArrays()
+const endRound = () => {
         switch(true) {
+            case(currentRd == "1"):           
+                timer.innerText = ""
+                currentRd = "1b"
+                currentArray = arrP2
+                console.log(currentRd)
+                console.log(currentArray)
+                playerStatus.innerText = "Player 2, follow their lead!"
+                startButton.value = "Proceed"
+                startButton.style.display = "inherit"
+                timeleft=5
+                startRecording = false
+                break
             case(currentRd == "1b"):
                 if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                    playerStatus.innerText = "Ok, lets make this a little harder" 
+                    playerStatus.innerText = "Ok Player 2, this time you take the lead" 
                     currentRd = "2"
                     startButton.value = "Round 2"
                     startButton.style.display = "inherit"
                     resetArray()
+                    currentArray = arrP2
+                    console.log(currentRd)
+                    console.log(arrP2)
+                    console.log(arrP1)
+                    timeleft=5
                     } else {
-                    timer.innerText = "GAME OVER"
-                    playerStatus.innerText = "Not your best effort" 
+                        timer.innerText = "GAME OVER"
+                        playerStatus.innerText = "Not your best effort" 
                 }
                 break
+            case (currentRd == "2"):
+                timer.innerText = "REVERSE"
+                currentRd = "2b"
+                currentArray = arrP1
+                console.log(currentRd)
+                console.log(currentArray)
+                playerStatus.innerText = "P1 match that sequence, but in reverse order!"
+                startButton.value = "Proceed"
+                startButton.style.display = "inherit"
+                timeleft=5
+                    break
             case (currentRd == "2b"):
                 if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
-                    timer.innerText = "Not bad, on to the final round!" 
+                    playerStatus.innerText = "Great Job! on to the final round" 
+                    currentRd = "3"
+                    startButton.value = "Final Round"
+                    startButton.style.display = "inherit"
+                    resetArray()
+                    currentArray = arrP2
+                    console.log(currentRd)
+                    console.log(arrP2)
+                    console.log(arrP1)
                     } else {
-                    timer.innerText = "Sorry, do better" 
+                        timer.innerText = "GAME OVER"
+                        timer.innerText = "So close, yet so far" 
                     }
                 break
             }
@@ -142,52 +169,26 @@ let timeleft = 5;
         
         
         const startGame = () => {
-            if (currentRd != 0) { document.addEventListener('keydown', recordSequence)
+            if (startRecording = true) { document.addEventListener('keydown', recordSequence)
         }
+        
+        title.innerText = ""
         startButton.style.display = "none"
-        switch (true){
-            case (currentRd == "1"):
-                timer.innerText = "Player 1 get ready"
+        playerStatus.innerText = "Player 1 get ready"
+                playerStatus.innerText = ""
                 const countdown = setInterval(function(){
                     if(timeleft <= 0 ){
-                        timer.innerText = "Player 1 ran out of time..."
-                        } else if(arrP1.length == 4){
+                        timer.innerText = "GAME OVER"
+                        playerStatus.innerText = "You ran out of time"
+                        } else if(currentArray.length == 4){
+                            endRound()
                             clearInterval(countdown)
-                            timer.innerText = ""
-                            currentRd = "1b"
-                            currentArray = arrP2
-                            console.log(currentRd)
-                            console.log(currentArray)
-                            playerStatus.innerText = "Player 2, follow their lead!"
-                            startButton.value = "Proceed"
-                            startButton.style.display = "inherit"
                         } else {
+                            startRecording = true
                             timer.innerText = timeleft 
                             timeleft -= 1;
                 }}, 1040)
-                    break
-                case (currentRd == "1b"):
-                    const countdown2 = setInterval(function(){
-                        if(timeleft <= 0 ){
-                            timer.innerText = "You cant win if you dont even try..."
-                            } else if(arrP2.length == 4){
-                                timer.innerText = ""
-                                checkForWin()
-                                currentArray = arrP2
-                                console.log(currentRd)
-                                console.log(arrP2)
-                                console.log(arrP1)
-                                clearInterval(countdown2)
-                                // currentRd = "2"
-                                // // startButton.value = "Proceed"
-                                // // startButton.style.display = "inherit"
-                            } else {
-                                timer.innerText = timeleft 
-                                timeleft -= 1;
-                    }}, 1040)
-                
-                
-            }}
+            }
             
             
             
