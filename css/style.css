@@ -8,15 +8,16 @@ h1 {
 }
 
 #title {
-    font-size: 75px;
+    font-size: 70px;
     color: whitesmoke;
     margin-top: 50px;
+    font-family: 'Audiowide', cursive;
 }
 
-.container{
+/* .container{
     position: static;
     
-}
+} */
 
 
 /* canvas {
@@ -28,6 +29,21 @@ h1 {
     background-position: center;
 } */
 
+#rules {
+    height: 80%;
+    width: 80%;
+    
+}
+
+.level {
+    min-width: 800px;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+    position: absolute;
+}
+
+
 #gameArea {
     display: grid;
     justify-self: center;
@@ -37,7 +53,7 @@ h1 {
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;;
     background-position: center;
-    margin: 20px auto;
+    margin: 150px auto;
     width: 896px;
     height: 504px;
 }
@@ -52,7 +68,7 @@ li {
     display: inline-block;
 }
 
-#startButton {
+#startButton{
     background-color: rgba(0,0,0,0);
     border: 1px solid white;
     /* border-radius: 25%; */
@@ -62,21 +78,55 @@ li {
     color: floralwhite;
     justify-self: center;
     text-align: center;
-    margin-top: 100px;
-    
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
+#dropupDiv {
+    /* max-width: 287px; */
+    justify-content: center;
+    background-color: rgba(0,0,0,0);
+
+}
+
+#howToPlayButton {
+    background-color: rgba(0,0,0,0);
+    border: 1px solid white;
+    /* border-radius: 25%; */
+    font-size: 15px;
+    font-family:  'Turret Road', cursive;
+    font-weight: bold;
+    color: floralwhite;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#modIcon {
+    width: 120px;
+    height: 120px;
+    
+    
+    display: relative;
+}
 #timer{
     font-size: 50px;
     background-color: rgba(0,0,0,0);
     color: whitesmoke;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Audiowide', cursive;
+    min-width: 120px;
+    max-height: 115px;
+
+    display: relative;
 }
+
+
 
 #playerStatus {
     background-color: rgba(0,0,0,0);
     color: whitesmoke;
     font-size: 30px;
+    
 }
 
 @keyframes gradient {

@@ -39,6 +39,17 @@ timer.innerText = ""
 arrP1 = []
 arrP2 = []
 let currentArray = arrP1
+
+let playerUp = ""
+
+let changePlayer = () => {
+    if(currentArray == arrP1){
+        playerUp = "Player 1"
+    } else {
+        playerUp = "Player 2"
+    }
+}
+
 let timeleft = 0;
 
 const resetArray = () => {
@@ -67,14 +78,14 @@ const endRound = () => {
         currentArray = arrP2
         // console.log(currentRd)
         // console.log(currentArray)
-        playerStatus.innerText = "Player 2, follow their lead!"
+        // playerStatus.innerText = "Player 2, follow their lead!"
         startButton.value = "Proceed"
         startButton.style.display = "inherit"
         timeleft = 0
         break
         case(currentRd == "1b"):
         if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-            playerStatus.innerText = "Ok Player 2, this time you take the lead" 
+            // playerStatus.innerText = "Ok Player 2, this time you take the lead" 
             currentRd = "2"
             startButton.value = "Round 2"
             startButton.style.display = "inherit"
@@ -86,7 +97,7 @@ const endRound = () => {
             timeleft = 0
         } else {
             timer.innerText = "GAME OVER"
-            playerStatus.innerText = "Not your best effort" 
+            // playerStatus.innerText = "Not your best effort" 
             restartGame()
         }
         break
@@ -96,14 +107,14 @@ const endRound = () => {
             currentArray = arrP1
             // console.log(currentRd)
             // console.log(currentArray)
-            playerStatus.innerText = "P1 match that sequence, but in reverse order!"
+            // playerStatus.innerText = "P1 match that sequence, but in reverse order!"
             startButton.value = "Proceed"
             startButton.style.display = "inherit"
             timeleft = 0
             break
             case (currentRd == "2b"):
                 if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
-                    playerStatus.innerText = "Great Job! on to the final round. P1 sets the tone" 
+                    // playerStatus.innerText = "Great Job! on to the final round. P1 sets the tone" 
                     timer.innerText = ""
                     currentRd = "3"
                     startButton.style.display = "inherit"
@@ -125,14 +136,14 @@ const endRound = () => {
                     currentArray = arrP1
                     // console.log(currentRd)
                     // console.log(currentArray)
-                    playerStatus.innerText = "P2, match that sequence using opposite directions."
+                    // playerStatus.innerText = "P2, match that sequence using opposite directions."
                     startButton.value = "Proceed"
                     startButton.style.display = "inherit"
                     timeleft = 0
                     break
                     case (currentRd == "3b"):
                         if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                            playerStatus.innerText = "Congrats! Player 2 wins!" 
+                            // playerStatus.innerText = "Congrats! Player 2 wins!" 
                             timer.innerText = "Victory"
                             restartGame()
                         } else {
@@ -235,22 +246,25 @@ const displayArrow = (icon) => {
     
 }
 const startGame = () => {
+    changePlayer()
+    playerStatus.innerText = playerUp
     icon1.src = ""
     icon2.src = ""
     icon3.src = ""
     icon4.src = ""
-
+    dropupDiv.className = "dropdown is-hidden"
+    modIcon.className = "image size-is-30x30"
     sfx.confirm.play()
     timeleft=5
     if(currentRd == "1") {
         music.main.play()}
-        if (timeleft == 5 && currentRd == "1"){playerStatus.innerText = "P1 you're up"}
+        // if (timeleft == 5 && currentRd == "1"){playerStatus.innerText = "P1 you're up"}
     title.innerText = ""
     startButton.style.display = "none"
         const countdown = setInterval(function(){
             if(timeleft <= 0 ){
                 timer.innerText = "GAME OVER"
-                playerStatus.innerText = "You ran out of time"
+                // playerStatus.innerText = "You ran out of time"
                 clearInterval(countdown)
                 restartGame()
                 } else if(currentArray.length == 4){
