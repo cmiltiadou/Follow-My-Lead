@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" 
+    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
@@ -24,18 +27,18 @@
         <div>
             <h1 id="timer"></h1>
             <h1 id="title">FOLLOW MY LEAD</h1>
-            <h1 id= "playerStatus"></h1>
+            <h1 id= "playerStatus">Controls:</h1>
         </div>
-        
-        <ol id="displayArrows">
-            <li><img src="" id="icon1"></li>
-            <li><img src="" id="icon2"></li>
-            <li><img src="" id="icon3"></li>
-            <li><img src="" id="icon4"></li> 
-        </ol>
+        <ul id="displayArrows">
+            <li><img src="css/images/ctrlW.png" id="icon1"></li>
+            <li><img src="css/images/ctrlA .png" id="icon2"></li>
+            <li><img src="css/images/ctrlS.png" id="icon3"></li>
+            <li><img src="css/images/ctrlD.png" id="icon4"></li> 
+        </ul>
         <input class="button is-rounded is-focused" id="startButton" value="Start Game">
     </section>
-    <input type="button" id="checkArr" value="Check Array">
-      <script src="js/app.js"></script>
+    <!-- <input type="button" id="checkArr" value="Check Array"> -->
+    <script src="js/app.js"></script>
+    
 </body>
 </html>

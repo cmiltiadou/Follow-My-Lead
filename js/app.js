@@ -1,135 +1,179 @@
+// adding audiofiles using howl.js
+let sfx = {
+    up: new Howl({
+        src: ["sounds/beep.wav"],
+        html5: true,
+    }),
+    
+    complete: new Howl({
+        src: ["sounds/fullSequnce.wav"],
+        html5: true,
+    }),
+    confirm: new Howl({
+        src: ["sounds/wall.wav"],
+        html5: true,
+    })
+
+}
+
+let music = {
+    main: new Howl({
+        src: ["sounds/High-Fashion.mp3"],
+        loop:true,
+        html5:true,
+        buffer:true,
+    })
+
+}
+
 // declare the image path for each icon so it can easily be called again
 const upIcon = 'css/images/upArrow.png'
 const dwnIcon = 'css/images/downArrow.png'
 const leftIcon = 'css/images/leftArrow.png'
 const rightIcon = 'css/images/rightArrow.png'
+
+let iconToSet = 1
 let currentRd = "1"
 timer.innerText = ""
 
-
 arrP1 = []
 arrP2 = []
-
-let startRecording = false
 let currentArray = arrP1
 let timeleft = 0;
-
-let restartGame = () =>{
-    currentRd = "1"
-    currentArray = arrP1
-    timeleft = 0
-    startButton.value = "Play Again"
-    startButton.style.display = "inherit"
-    resetArray()
-}
-
 
 const resetArray = () => {
     arrP1 = []
     arrP2 = []
     console.log('arrays reset')
 }
+let restartGame = () =>{
+    resetArray()
+    currentRd = "1"
+    currentArray = arrP1
+    timeleft = 0
+    startButton.value = "Play Again"
+    startButton.style.display = "inherit"
+    playerStatus.value = ""
+    music.main.stop()
+}
+
+
 
 const endRound = () => {
     switch(true) {
         case(currentRd == "1"):           
-            timer.innerText = ""
-            currentRd = "1b"
-            currentArray = arrP2
-            console.log(currentRd)
-            console.log(currentArray)
-            playerStatus.innerText = "Player 2, follow their lead!"
-            startButton.value = "Proceed"
-            startButton.style.display = "inherit"
-            timeleft = 0
-            break
+        timer.innerText = ""
+        currentRd = "1b"
+        currentArray = arrP2
+        // console.log(currentRd)
+        // console.log(currentArray)
+        playerStatus.innerText = "Player 2, follow their lead!"
+        startButton.value = "Proceed"
+        startButton.style.display = "inherit"
+        timeleft = 0
+        break
         case(currentRd == "1b"):
-            if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                playerStatus.innerText = "Ok Player 2, this time you take the lead" 
-                currentRd = "2"
-                startButton.value = "Round 2"
-                startButton.style.display = "inherit"
-                resetArray()
-                currentArray = arrP2
-                console.log(currentRd)
-                console.log(arrP2)
-                console.log(arrP1)
-                timeleft = 0
-                } else {
-                    timer.innerText = "GAME OVER"
-                    playerStatus.innerText = "Not your best effort" 
-                    restartGame()
-            }
-            break
+        if(arrP1.sort().join(',') === arrP2.sort().join(',')){
+            playerStatus.innerText = "Ok Player 2, this time you take the lead" 
+            currentRd = "2"
+            startButton.value = "Round 2"
+            startButton.style.display = "inherit"
+            resetArray()
+            currentArray = arrP2
+            // console.log(currentRd)
+            // console.log(arrP2)
+            // console.log(arrP1)
+            timeleft = 0
+        } else {
+            timer.innerText = "GAME OVER"
+            playerStatus.innerText = "Not your best effort" 
+            restartGame()
+        }
+        break
         case (currentRd == "2"):
             timer.innerText = "REVERSE"
             currentRd = "2b"
             currentArray = arrP1
-            console.log(currentRd)
-            console.log(currentArray)
+            // console.log(currentRd)
+            // console.log(currentArray)
             playerStatus.innerText = "P1 match that sequence, but in reverse order!"
             startButton.value = "Proceed"
             startButton.style.display = "inherit"
             timeleft = 0
             break
-        case (currentRd == "2b"):
-            if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
-                playerStatus.innerText = "Great Job! on to the final round" 
-                timer.innerText = ""
-                currentRd = "3"
-                startButton.style.display = "inherit"
-                resetArray()
-                currentArray = arrP2
-                console.log(currentRd)
-                console.log(arrP2)
-                console.log(arrP1)
-                timeleft = 0
+            case (currentRd == "2b"):
+                if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
+                    playerStatus.innerText = "Great Job! on to the final round. P1 sets the tone" 
+                    timer.innerText = ""
+                    currentRd = "3"
+                    startButton.style.display = "inherit"
+                    resetArray()
+                    currentArray = arrP2
+                    // console.log(currentRd)
+                    // console.log(arrP2)
+                    // console.log(arrP1)
+                    timeleft = 0
                 } else {
                     timer.innerText = "GAME OVER"
                     timer.innerText = "So close, yet so far" 
                     restartGame()
                 }
-            break
-        case (currentRd == "3"):
-            timer.innerText = "OPPOSITES"
-            currentRd = "3b"
-            currentArray = arrP1
-            console.log(currentRd)
-            console.log(currentArray)
-            playerStatus.innerText = "Now match that sequence using opposite directions. Up is down and left is right"
-            startButton.value = "Proceed"
-            startButton.style.display = "inherit"
-            timeleft = 0
-            break
-        case (currentRd == "3b"):
-            if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                playerStatus.innerText = "Congrats! Player 2 wins!" 
-                timer.innerText = "Victory"
-                restartGame()
-                } else {
-                    timer.innerText = "GAME OVER"
-                    timer.innerText = "You nearly had it!" 
-                    restartGame()
-                }
-            break
-        }
-        }
-
-
-// const countdown = setInterval(function(){
-//   if(timeleft <= 0 || currentArray.lenght == 4){
-//     clearInterval(countdown);
-//     timer.innerText = "Calculating...";
-//   } else {
-//     timer.innerText = timeleft 
-//   }
-//   timeleft -= 1;
-// }, 1010);
-
-//test that icons are updated by running the following function
-// const displaySeq = () => {
-    //     icon1.src = upIcon
-    //     icon2.src = leftIcon
+                break
+                case (currentRd == "3"):
+                    timer.innerText = "OPPOSITES"
+                    currentRd = "3b"
+                    currentArray = arrP1
+                    // console.log(currentRd)
+                    // console.log(currentArray)
+                    playerStatus.innerText = "P2, match that sequence using opposite directions."
+                    startButton.value = "Proceed"
+                    startButton.style.display = "inherit"
+                    timeleft = 0
+                    break
+                    case (currentRd == "3b"):
+                        if(arrP1.sort().join(',') === arrP2.sort().join(',')){
+                            playerStatus.innerText = "Congrats! Player 2 wins!" 
+                            timer.innerText = "Victory"
+                            restartGame()
+                        } else {
+                            timer.innerText = "GAME OVER"
+                            timer.innerText = "You nearly had it!" 
+                            restartGame()
+                        }
+                        break
+                    }
+}
+                
+                
+const displayArrow = (icon) => {
+    if (iconToSet == 1){
+        icon1.src = icon
+        iconToSet = 2
+        sfx.up.play()
+        }else if(iconToSet ==2){
+            icon2.src = icon
+            iconToSet = 3
+            sfx.up.play()
+            } else if (iconToSet == 3){
+                icon3.src = icon
+                iconToSet = 4
+                sfx.up.play()
+                }else if(iconToSet == 4){
+                    icon4.src = icon
+                    iconToSet = 1
+                    sfx.complete.play()
+                    const countdown = setTimeout(function(){
+                        icon1.src = ""
+                        icon2.src = ""
+                        icon3.src = ""
+                        icon4.src = ""
+                    },2000)
+    }      
+}
+                //test that icons are updated by running the following function
+                // const displaySeq = () => {
+                    //     icon1.src = upIcon
+                    //     icon2.src = leftIcon
     //     icon3.src = dwnIcon
     //     icon4.src = upIcon
     // }
@@ -149,38 +193,75 @@ const endRound = () => {
         //if the w key is pressed, append to 
         case ('w'):
             currentArray.push('W')
+            displayArrow(upIcon)
             break
         case ('a'):
             currentArray.push('A')
+            displayArrow(leftIcon)
             break
         case ('s'):
             currentArray.push('S')
+            displayArrow(dwnIcon)
             break
         case ('d'):
             currentArray.push('D')
+            displayArrow(rightIcon)
             break
     }} else if(timeleft > 0 && currentArray.length < 4 && currentRd == "3b"){
         switch(e.key){
             //for the final rd, we'll have p2's keypresses correspond to the opposite key (i.e. pressing W = S) 
             case ('w'):
                 currentArray.push('S')
+                displayArrow(upIcon)
                 break
             case ('a'):
                 currentArray.push('D')
+                displayArrow(leftIcon)
                 break
             case ('s'):
                 currentArray.push('W')
+                displayArrow(dwnIcon)
                 break
             case ('d'):
                 currentArray.push('A')
+                displayArrow(rightIcon)
                 break
         }
 
     } else {
         return false
     }
-    checkArr.addEventListener('click', console.log(currentArray))  
+    // checkArr.addEventListener('click', console.log(currentArray))  
     
+}
+const startGame = () => {
+    icon1.src = ""
+    icon2.src = ""
+    icon3.src = ""
+    icon4.src = ""
+
+    sfx.confirm.play()
+    timeleft=5
+    if(currentRd == "1") {
+        music.main.play()}
+        if (timeleft == 5 && currentRd == "1"){playerStatus.innerText = "P1 you're up"}
+    title.innerText = ""
+    startButton.style.display = "none"
+        const countdown = setInterval(function(){
+            if(timeleft <= 0 ){
+                timer.innerText = "GAME OVER"
+                playerStatus.innerText = "You ran out of time"
+                clearInterval(countdown)
+                restartGame()
+                } else if(currentArray.length == 4){
+                    endRound()
+                    clearInterval(countdown)
+                    startRecording = false
+                } else if(timeleft > 0) {
+                    timer.innerText = timeleft 
+                    timeleft -= 1;
+            }
+        }, 1040)
 }
 // Player 1 has 7 seconds to enter their sequence
 // add timer to canvas
@@ -200,28 +281,6 @@ const endRound = () => {
 //         timeleft -= 1;} }
         
         
-const startGame = () => {
-    timeleft=5
-    if(currentRd == "1") {playerStatus.innerText = "Player 1 you're up"}
-    title.innerText = ""
-    startButton.style.display = "none"
-    playerStatus.innerText = ""
-        const countdown = setInterval(function(){
-            if(timeleft <= 0 ){
-                timer.innerText = "GAME OVER"
-                playerStatus.innerText = "You ran out of time"
-                clearInterval(countdown)
-                restartGame()
-                } else if(currentArray.length == 4){
-                    endRound()
-                    clearInterval(countdown)
-                    startRecording = false
-                } else if(timeleft > 0) {
-                    timer.innerText = timeleft 
-                    timeleft -= 1;
-            }
-        }, 1040)
-}
             
             
             
