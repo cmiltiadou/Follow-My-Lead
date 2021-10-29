@@ -1,5 +1,7 @@
 # Follow My Lead
 
+click here to play the game: https://cmiltiadou.github.io/sei-game-project1/
+
 ## Objective of the game
 ---
 The objective of 'Follow My Lead' is simple:
