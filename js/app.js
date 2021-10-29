@@ -1,13 +1,3 @@
-// Player 1 has 7 seconds to enter their sequence
-// add timer to canvas
-// Once entered the keypresses should be stored in array
-// render key sequence as arrows after complete
-// Display Player 1's key sequence on screen for 3 seconds
-// Player 2 now has to match Player 1's sequence exactly as entered // try to compare on the fly OR
-// store player 2's array and compare to player 1 and check for win or lose conditions using if else statement
-
-
-
 // adding audiofiles using howl.js
 let sfx = {
     up: new Howl({
@@ -149,52 +139,53 @@ const endRound = () => {
             startButton.value = "Proceed"
             startButton.style.display = "inherit"
             timeleft = 0
-            break
-            case (currentRd == "2b"):
-                if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
-                    timer.innerText = "Well done!"
-                    currentRd = "3"
-                    startButton.style.display = "inherit"
-                    resetArray()
-                    currentArray = arrP2
-                    // console.log(currentRd)
-                    // console.log(arrP2)
-                    // console.log(arrP1)
-                    timeleft = 0
-                } else {
-                    timer.innerText = "GAME OVER"
-                    restartGame()
+        break
+        case (currentRd == "2b"):
+            if(arrP1.reverse().sort().join(',') === arrP2.sort().join(',')){
+                timer.innerText = "Well done!"
+                currentRd = "3"
+                startButton.style.display = "inherit"
+                resetArray()
+                currentArray = arrP2
+                // console.log(currentRd)
+                // console.log(arrP2)
+                // console.log(arrP1)
+                timeleft = 0
+            } else {
+                timer.innerText = "GAME OVER"
+                restartGame()
+            }
+        break
+        case (currentRd == "3"):
+            timer.innerText = "OPPOSITES"
+            currentRd = "3b"
+            currentArray = arrP1
+            // console.log(currentRd)
+            // console.log(currentArray)
+            startButton.value = "Proceed"
+            startButton.style.display = "inherit"
+            timeleft = 0
+        break
+        case (currentRd == "3b"):
+            if(arrP1.sort().join(',') === arrP2.sort().join(',')){
+                timer.innerText = ""
+                currentRd = "1"
+                startButton.style.display = "inherit"
+                resetArray()
+                currentArray = arrP1
+                timer.innerText = "Nice!"
+                timeleft = 0
+                startMusic = 0
+            } else {
+                timer.innerText = "GAME OVER"
+                restartGame()
+            }
+        break
                 }
-                break
-                case (currentRd == "3"):
-                    timer.innerText = "OPPOSITES"
-                    currentRd = "3b"
-                    currentArray = arrP1
-                    // console.log(currentRd)
-                    // console.log(currentArray)
-                    startButton.value = "Proceed"
-                    startButton.style.display = "inherit"
-                    timeleft = 0
-                    break
-                    case (currentRd == "3b"):
-                        if(arrP1.sort().join(',') === arrP2.sort().join(',')){
-                            timer.innerText = ""
-                            currentRd = "1"
-                            startButton.style.display = "inherit"
-                            resetArray()
-                            currentArray = arrP1
-                            timer.innerText = "Nice!"
-                            timeleft = 0
-                            startMusic = 0
-                        } else {
-                            timer.innerText = "GAME OVER"
-                            restartGame()
-                        }
-                        break
-                    }
 }
                 
-                
+
+// code to display arrows based on key  presses                
 const displayArrow = (icon) => {
     if (iconToSet == 1){
         icon1.src = icon
@@ -220,19 +211,8 @@ const displayArrow = (icon) => {
                     },2200)
     }      
 }
-//test that icons are updated by running the following function
-// const displaySeq = () => {
-    //     icon1.src = upIcon
-    //     icon2.src = leftIcon
-    //     icon3.src = dwnIcon
-    //     icon4.src = upIcon
-    // }
-    // displaySeq()
-    
-// Once entered the keypresses should be stored in array
-//use appendChild
-        
-    
+ 
+// Function to record key presses as they meet certain conditions
 const recordSequence = (e) => {
     if(timeleft > 0 && currentArray.length < 4 && currentRd !== "3b" && timer.innerText != ""  && timer.innerText != "GO!"){
 switch(e.key){
@@ -255,7 +235,7 @@ switch(e.key){
         break
 }} else if(timeleft > 0 && currentArray.length < 4 && currentRd == "3b" && timer.innerText != "" && timer.innerText != "GO!"){
     switch(e.key){
-        //for the final rd, we'll have p2's keypresses correspond to the opposite key (i.e. pressing W = S) 
+        //for the final rd, we'll have the followers keypresses correspond to the opposite key (i.e. pressing W = S) //
         case ('w'):
             currentArray.push('S')
             displayArrow(upIcon)
@@ -276,9 +256,11 @@ switch(e.key){
 } else {
     return false
 }
-    // checkArr.addEventListener('click', console.log(currentArray))  
+// checkArr.addEventListener('click', console.log(currentArray))  
     
 }
+
+// startGame function runs when the startButton is pressed
 const startGame = () => {
     
     //startMusic will keep the music from starting another instance when the game loops back to Rd1
@@ -302,20 +284,20 @@ const startGame = () => {
     title.innerText = ""
     startButton.style.display = "none"
 
-    const countdown = setInterval(function(){
-        if(timeleft <= 0 ){
-            timer.innerText = "GAME OVER"
-            // playerStatus.innerText = "You ran out of time"
+const countdown = setInterval(function(){
+    if(timeleft <= 0 ){
+        timer.innerText = "GAME OVER"
+        // playerStatus.innerText = "You ran out of time"
+        clearInterval(countdown)
+        restartGame()
+        } else if(currentArray.length == 4){
+            timer.innerText = ""
+            endRound()
             clearInterval(countdown)
-            restartGame()
-            } else if(currentArray.length == 4){
-                timer.innerText = ""
-                endRound()
-                clearInterval(countdown)
-            } else if(timeleft > 0) {
-                timer.innerText = timeleft 
-                timeleft -= 1;
-        }
+        } else if(timeleft > 0) {
+            timer.innerText = timeleft 
+            timeleft -= 1;
+    }
     }, 1040)
 }
 
@@ -323,15 +305,3 @@ const startGame = () => {
 startButton.addEventListener('click', startGame)
 document.addEventListener('keydown', recordSequence)
 
-// setTimeout(checkForWin, 2000)
-// console.log("array 2 " + arrP2)
-// console.log("array 1 " + arrP1)  
-// add button so Player 2 can enter a matching sequence
-// if(arrP2.length == 4 && arrP1.length == 4 ){
-//     checkForWin()
-// setTimeout(resetArray, 1000)
-// timer.innerText = "Player 1 get ready"
-// startButton.value = "Proceed"
-// startButton.style.display = "inherit"
-// console.log("this is array 2 " +arrP2)
-// console.log("this is array 1 " +arrP1)
