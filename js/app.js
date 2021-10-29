@@ -36,6 +36,9 @@ let music = {
 
 }
 
+// autoplay not functioning correctly, this is my workaround
+let startMusic = 1
+
 // declare the image path for each icon so it can easily be called again
 const upIcon = 'css/images/upArrow.png'
 const dwnIcon = 'css/images/downArrow.png'
@@ -182,6 +185,7 @@ const endRound = () => {
                             currentArray = arrP1
                             timer.innerText = "Nice!"
                             timeleft = 0
+                            startMusic = 0
                         } else {
                             timer.innerText = "GAME OVER"
                             restartGame()
@@ -277,7 +281,9 @@ switch(e.key){
 }
 const startGame = () => {
     
-    if(currentRd == "1") {
+    //startMusic will keep the music from starting another instance when the game loops back to Rd1
+    // hopefully this is temporary and I can get autoplay to work properly 
+    if(currentRd == "1" && startMusic == 1) {
         music.main.play()}
     
     sfx.confirm.play()
