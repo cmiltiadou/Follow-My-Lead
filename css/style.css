@@ -5,12 +5,13 @@ body {
 
 h1 {
     font-family: 'Turret Road', cursive;
+    color: whitesmoke;
 }
 
 #title {
     font-size: 70px;
     color: whitesmoke;
-    margin-top: 50px;
+    margin-top: 0;
     font-family: 'Audiowide', cursive;
 }
 
@@ -37,12 +38,32 @@ h1 {
 
 .level {
     min-width: 800px;
+    justify-self: center;
     justify-content: center;
     text-align: center;
     margin-bottom: 30px;
     position: absolute;
 }
 
+#scores {
+    min-width: 900px;
+    justify-self: center;
+    justify-content: center;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-top: 0;
+    position: absolute;
+    top: 760px;
+}
+
+#p2Score, #p1Score {
+    max-width: 30px;
+    font-family: 'Audiowide', cursive;
+}
+
+.level-item{
+    max-width: 200px;
+}
 
 #gameArea {
     display: grid;
@@ -53,13 +74,14 @@ h1 {
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;;
     background-position: center;
-    margin: 150px auto;
+    margin: 150px auto 20px auto;
     width: 896px;
     height: 504px;
 }
 
 .displayArrows {
     display: inline-block; 
+    
 }
 
 li {
@@ -78,15 +100,16 @@ li {
     color: floralwhite;
     justify-self: center;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
+
 
 #dropupDiv {
     /* max-width: 287px; */
     justify-content: center;
     background-color: rgba(0,0,0,0);
-
+    
 }
 
 #howToPlayButton {
@@ -98,13 +121,13 @@ li {
     font-weight: bold;
     color: floralwhite;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #modIcon {
-    width: 120px;
-    height: 120px;
+    width: 170px;
+    height: 170px;
     
     
     display: relative;
@@ -116,8 +139,9 @@ li {
     font-family: 'Audiowide', cursive;
     min-width: 120px;
     max-height: 115px;
-
     display: relative;
+    margin-top: 10px;
+    
 }
 
 
@@ -126,7 +150,7 @@ li {
     background-color: rgba(0,0,0,0);
     color: whitesmoke;
     font-size: 30px;
-    
+    font-family: 'Audiowide', cursive;
 }
 
 @keyframes gradient {
