@@ -19,7 +19,7 @@ The objective of 'Follow My Lead' is simple:
 
 7. The game loops back until someone fails to match a sequence, at that point the game ends and the opposing player will receive a point. 
 
-** the game currently take a scripted approach to choosing the modifiers and looping rounds, in future version all of that will be randomized.
+** the game currently take a scripted approach to choosing the modifiers and looping rounds, in a future version all of that will be randomized.
 
 
 <img src="css/images/Follow My Lead - Window.png">
