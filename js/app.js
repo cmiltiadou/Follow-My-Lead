@@ -36,9 +36,12 @@ const leftIcon = 'css/images/leftArrow.png'
 const rightIcon = 'css/images/rightArrow.png'
 
 let iconToSet = 1
+
+
 let currentRd = "1"
 timer.innerText = ""
 
+// for tracking player score
 let player1Score = 0
 let player2Score = 0
 
@@ -49,7 +52,9 @@ let currentArray = arrP1
 
 let playerUp = ""
 
+// function used to display the round modifier when appropriate
 let displayMod = () => {
+
     if(currentRd == "3b"){
         modIcon.src = "css/images/OppositeIcon.png"
     } else if (currentRd == "1b") {
@@ -61,7 +66,9 @@ let displayMod = () => {
     }
 }
 
+// changes the displayed player when it is their turn
 let changePlayer = () => {
+
     if(currentArray == arrP1){
         playerUp = "Player 1"
     } else {
@@ -70,7 +77,10 @@ let changePlayer = () => {
     
 }
 
+
+// function to display player score
 let updateScore = () =>{
+
 if(playerUp == "Player 1"){
     player2Score += 1
 }else {
@@ -82,7 +92,9 @@ if(playerUp == "Player 1"){
 
 let timeleft = 0;
 
+// run in between rounds to reset arrays 
 const resetArray = () => {
+
     arrP1 = []
     arrP2 = []
     console.log('arrays reset')
@@ -90,6 +102,7 @@ const resetArray = () => {
 
 
 let restartGame = () =>{
+
     resetArray()
     updateScore()
     currentRd = "1"
@@ -102,8 +115,9 @@ let restartGame = () =>{
 }
 
 
-
+// this function will run at the end of all rounds
 const endRound = () => {
+
     switch(true) {
         case(currentRd == "1"):           
         currentRd = "1b"
@@ -187,6 +201,7 @@ const endRound = () => {
 
 // code to display arrows based on key  presses                
 const displayArrow = (icon) => {
+
     if (iconToSet == 1){
         icon1.src = icon
         iconToSet = 2
@@ -211,12 +226,13 @@ const displayArrow = (icon) => {
                     },2200)
     }      
 }
- 
+
 // Function to record key presses as they meet certain conditions
 const recordSequence = (e) => {
-    if(timeleft > 0 && currentArray.length < 4 && currentRd !== "3b" && timer.innerText != ""  && timer.innerText != "GO!"){
+
+    if(timeleft > 0 && currentArray.length < 4 && currentRd !== "3b" && timer.innerText != ""  
+    && timer.innerText != "GO!"){
 switch(e.key){
-    //if the w key is pressed, append to 
     case ('w'):
         currentArray.push('W')
         displayArrow(upIcon)
@@ -233,7 +249,8 @@ switch(e.key){
         currentArray.push('D')
         displayArrow(rightIcon)
         break
-}} else if(timeleft > 0 && currentArray.length < 4 && currentRd == "3b" && timer.innerText != "" && timer.innerText != "GO!"){
+}} else if(timeleft > 0 && currentArray.length < 4 && currentRd == "3b" && timer.innerText != "" 
+&& timer.innerText != "GO!"){
     switch(e.key){
         //for the final rd, we'll have the followers keypresses correspond to the opposite key (i.e. pressing W = S) //
         case ('w'):
@@ -255,9 +272,7 @@ switch(e.key){
     }
 } else {
     return false
-}
-// checkArr.addEventListener('click', console.log(currentArray))  
-    
+}    
 }
 
 // startGame function runs when the startButton is pressed
@@ -274,16 +289,23 @@ const startGame = () => {
     changePlayer()
     displayMod()
     playerStatus.innerText = playerUp
+
+    // will clear arrow icons seen on the start screen, and anything left in between rounds
     icon1.src = ""
     icon2.src = ""
     icon3.src = ""
     icon4.src = ""
+
+    //hides the howToPlayButton when the startGameButton is clicked
     dropupDiv.className = "dropdown is-hidden"
+
+    // 
     modIcon.className = "image size-is-30x30"
     timeleft=5
     title.innerText = ""
     startButton.style.display = "none"
 
+// countdown timer function that will stop on certain conditions 
 const countdown = setInterval(function(){
     if(timeleft <= 0 ){
         timer.innerText = "GAME OVER"
