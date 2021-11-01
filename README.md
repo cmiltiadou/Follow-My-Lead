@@ -1,5 +1,7 @@
 # Follow My Lead
 
+click here to play the game: https://cmiltiadou.github.io/sei-game-project1/
+
 ## Objective of the game
 ---
 The objective of 'Follow My Lead' is simple:
@@ -7,15 +9,19 @@ The objective of 'Follow My Lead' is simple:
 
 1. Player One initializes the game by entering any 4 key sequence of the keys 'WASD'. The inputed keys will display on the canvas once the sequence is complete, and remain on display for 3 seconds.
 
-2. Player 2 must match the combination in its exact order within a 7 second time limit to continue playing, otherwise Player 1 wins.
+2. Player 2 must match the combination in its exact order within a 5 second time limit to continue playing, otherwise Player 1 wins.
 
-3.  Player 1 enters a new 4 key sequence using the 'WASD' keys. Once again the sequence is displayed for 3 seconds & a popup saying the word 'REVERSE' appears     
+3.  Player 2 enters a new 4 key sequence using the 'WASD' keys. Once again the sequence is displayed for 3 seconds & a popup saying the word 'REVERSE' appears     
 
-4.  Player 2 must now match the key squence in reverse order within the 7 second time limit to advnance to the final round, otherwise Player 1 wins
+4.  Player 1 must now match the key squence in reverse order within the 5 second time limit to advnance to the final round, otherwise Player 1 wins
 
 5.  Player 1 enters a new 4 key sequence using the 'WASD' keys. Once again the sequence is displayed for 3 seconds & a popup saying the word 'OPPOSITE' appears
 
-6. Player 2 must now match the key squence using the opposite keys (i.e. w = s, a = d) within the 7 second time limit to win the game, otherwise Player 1 wins
+6. Player 2 must now match the key squence using the opposite keys (i.e. w = s, a = d) within the 5 second time limit. 
+
+7. The game loops back until someone fails to match a sequence, at that point the game ends and the opposing player will receive a point. 
+
+** the game currently take a scripted approach to choosing the modifiers and looping rounds, in a future version all of that will be randomized.
 
 
 <img src="css/images/Follow My Lead - Window.png">
