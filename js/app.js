@@ -305,7 +305,7 @@ const startGame = () => {
     title.innerText = ""
     startButton.style.display = "none"
 
-// countdown timer function that will stop on certain conditions 
+// countdown timer function that will stop on certain conditions
 const countdown = setInterval(function(){
     if(timeleft <= 0 ){
         timer.innerText = "GAME OVER"
