@@ -1,6 +1,6 @@
 # Follow My Lead
 
-click here to play the game: https://cmiltiadou.github.io/sei-game-Follow-My-Lead/
+click here to play the game: https://cmiltiadou.github.io/Follow-My-Lead/
 
 ## Objective of the game
 ---
